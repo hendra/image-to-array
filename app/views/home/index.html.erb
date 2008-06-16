@@ -1,0 +1,5 @@
+<h1> Upload Image </h1>
+<%- form_tag '/home/upload', {:multipart => true} do -%>
+  File <%= file_field_tag 'uploaded_data' %>
+  <%= submit_tag 'Upload' %>
+<%- end -%>
