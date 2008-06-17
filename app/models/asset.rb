@@ -21,7 +21,26 @@ class Asset
   end
   
   def to_colour_array
-      return @img.export_pixels.uniq
+      return sort(@img.export_pixels, 'desc')
+  end
+
+private
+  
+  def sort(arr, order='asc')
+     tmp = {}
+     result = []
+     arr.uniq.each do |u|
+      tmp[u] = 0
+      arr.each do |a|
+        tmp[u] += 1 if a.eql?(u)
+      end
+     end
+     tmp.sort{|a,b| a[1]<=>b[1]}.each do |t|
+      result << t[0]
+     end
+     
+    rv = order.eql?('asc') ? result : result.reverse
+    return rv
   end
   
 end
