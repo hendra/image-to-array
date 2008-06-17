@@ -1,9 +1,4 @@
 <h1> Array Of Colour Codes </h1><hr />
-<div>
-  [<%- @color_codes.each_with_index do |code, i| -%>
-    <%= code %>
-    <%- unless i.eql?(@color_codes.size-1) -%>,<%- end -%>
-  <%- end -%>]
-</div><br />
+<div><%= @color_codes.join(',') %></div><br />
 
 <%= link_to 'Back to index', :action => 'index' %>
