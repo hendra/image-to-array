@@ -23,23 +23,13 @@ class Asset
   def to_colour_array
       return sort(@img.export_pixels, 'desc')
   end
-
-private
   
-  def sort(arr, order='asc')
-     tmp = {}
-     result = []
-     arr.uniq.each do |u|
-      tmp[u] = 0
-      arr.each do |a|
-        tmp[u] += 1 if a.eql?(u)
-      end
-     end
-     tmp.sort{|a,b| a[1]<=>b[1]}.each do |t|
-      result << t[0]
-     end
-     
-    rv = order.eql?('asc') ? result : result.reverse
+  def sort(array, order='asc')
+    rv=[]
+    grouped = array.group_by {|i| i}
+    sorted = grouped.sort_by{|x| x.last.size}
+    sorted.each{|k,v| rv << k}
+    rv.reverse! if order.eql?('desc')
     return rv
   end
   
